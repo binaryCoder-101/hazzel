@@ -4,13 +4,17 @@ All notable changes to Hazzel are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+
+## [1.5.4] - 2026-09-21
 ### Added
+- Ask-once approvals (`tools/approvals.py`): a y/N decision sticks for the turn — approvals run without re-prompting, denials fail fast with guidance instead of prompting again. Wired into `run_command`, `write_file`, `edit_file`, `apply_edits`, and `git_commit`; memory resets every turn and on conversation clear.
 - README quickstart leads with a zero-install trial (`uvx hazzel` / `pipx run hazzel` — verified: 5s cold, instant warm) with persistent alternatives (`uv tool install`, `pipx install`) alongside `pip`.
 - CI coverage report (`pytest-cov`, report-only, no fail-under gate) on the Python 3.13 leg, with the HTML report uploaded as a 14-day artifact. `pytest-cov` added to the `dev` extra.
 - README test-count badge (linked to CI) so the suite size is visible without clicking through.
 - `vercel.json` pinning deployments to `main`, so pull requests stop inheriting a failing "Authorization required to deploy" check on `site/`.
 
 ### Changed
+- `src/hazzel/ui.py` (2.6k lines) split into the `hazzel.ui` package (`_state`, `input`, `stream`, `messages`, `git/`, `help_docs`, `usage`, `selectors`; `panels` kept as a compat shim). Zero behavior change — `from hazzel import ui` keeps working.
 - README "Who's behind this" → "Contributors": PFP row only, dropping the duplicate names line and the prose that repeated every contributor name a third time. Header no longer lists contributor handles.
 
 ## [1.5.3] - 2026-09-20
