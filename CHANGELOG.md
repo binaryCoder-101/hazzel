@@ -3,6 +3,15 @@
 All notable changes to Hazzel are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Added
+- CI coverage report (`pytest-cov`, report-only, no fail-under gate) on the Python 3.13 leg, with the HTML report uploaded as a 14-day artifact. `pytest-cov` added to the `dev` extra.
+- README test-count badge (linked to CI) so the suite size is visible without clicking through.
+- `vercel.json` pinning deployments to `main`, so pull requests stop inheriting a failing "Authorization required to deploy" check on `site/`.
+
+### Changed
+- README "Who's behind this" → "Contributors": PFP row only, dropping the duplicate names line and the prose that repeated every contributor name a third time. Header no longer lists contributor handles.
+
 ## [1.5.3] - 2026-09-20
 ### Added
 - docs/EXAMPLES.md: five copy-paste transcripts for `/review`, `/commit`, vision `@image`, `!cmd &` / `/jobs`, and `hazzel -p` (#14).
