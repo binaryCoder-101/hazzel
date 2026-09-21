@@ -1,5 +1,31 @@
 from hazzel import ui
+from hazzel.ui import _state
 
+
+def test_ui_state_proxy_console(monkeypatch):
+    sentinel = object()
+
+    monkeypatch.setattr(ui, "console", sentinel)
+
+    assert ui.console is sentinel
+    assert _state.console is sentinel
+
+    del ui.__dict__["console"]
+
+    sentinel = object()
+    monkeypatch.setattr(_state, "console", sentinel)
+
+    assert ui.console is sentinel
+
+
+def test_ui_state_proxy_quiet(monkeypatch):
+    monkeypatch.setattr(ui, "_quiet", True)
+
+    assert ui._quiet is True
+    assert _state._quiet is True
+    assert ui.is_quiet() is True
+
+    del ui.__dict__["_quiet"]
 
 def test_confirm_accepts_yes_variants(monkeypatch):
     monkeypatch.setattr(ui, "_print_mode", False)
