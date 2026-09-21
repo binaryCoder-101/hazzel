@@ -21,7 +21,7 @@
   <img src="assets/demo.gif" alt="Hazzel demo — read a failing test, edit the file, run pytest" width="720" />
 </p>
 
-> Built with help from [@ronaldsterners](https://github.com/ronaldsterners) · [@Gambit-Checkmate](https://github.com/Gambit-Checkmate) (first external PR, v1.5.1) · [@DYNOSuprovo](https://github.com/DYNOSuprovo) (#12) — [good first issues welcome](https://github.com/mukundzha/hazzel/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
+> First external PR merged in v1.5.1 — [good first issues are open](https://github.com/mukundzha/hazzel/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
 **Recently shipped:** `NO_COLOR` support — piped logs and dumb terminals stay plain (#12, @DYNOSuprovo) · v1.5.3 SEO landing page · confirmation prompts accept `yes` — first external contribution (@Gambit-Checkmate, 1.5.1) · `/review` (1.5.0) · background `!cmd &` jobs (1.4.9) — [full changelog](CHANGELOG.md)
 
@@ -163,7 +163,7 @@ If you'd rather throw money at the problem, that works too. It goes straight int
   </a>
 </p>
 
-## Who's behind this
+## Contributors
 
 <p align="center">
   <a href="https://github.com/mukundzha"><img src="https://avatars.githubusercontent.com/mukundzha?v=4&s=80" width="64" alt="mukundzha"/></a>
@@ -178,14 +178,8 @@ If you'd rather throw money at the problem, that works too. It goes straight int
 </p>
 
 <p align="center">
-  <a href="https://github.com/mukundzha"><b>Mukund Jha</b> <sub>creator</sub></a> ·
-  <a href="https://github.com/ronaldsterners"><b>ronaldsterners</b></a> ·
-  <a href="https://github.com/Gambit-Checkmate"><b>Gambit-Checkmate</b></a> ·
-  <a href="https://github.com/DYNOSuprovo"><b>DYNOSuprovo</b></a> ·
-  <a href="https://github.com/HarshRajSinghania"><b>HarshRajSinghania</b></a>
+  <sub>every PR lands through the same door — reviewed, CI-verified on four Python versions, credited in the release notes.</sub>
 </p>
-
-Every PR lands through the same door: reviewed, CI-verified on four Python versions, credited in the release notes. ronaldsterners, Gambit-Checkmate, DYNOSuprovo, and HarshRajSinghania all started with a good first issue — the next row is one PR away.
 
 ## Contributing
 
