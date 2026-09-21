@@ -4,6 +4,9 @@ All notable changes to Hazzel are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [1.5.3] - 2026-09-20
+### Added
+- docs/EXAMPLES.md: five copy-paste transcripts for `/review`, `/commit`, vision `@image`, `!cmd &` / `/jobs`, and `hazzel -p` (#14).
+
 ### Removed
 - Star nudge and its 0600-perm marker file (`~/.config/hazzel/.star_nudged`); first launch no longer prints the star line.
 
