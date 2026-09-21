@@ -13,6 +13,7 @@ from hazzel.mentions import (
     strip_mentions,
 )
 from hazzel.providers import get_provider
+from hazzel.tools.approvals import reset_approvals as _reset_turn_approvals
 
 from .dispatch import (
     _active_tools,
@@ -166,6 +167,7 @@ def run(messages, user_input):
     trace = []
     seen_reads = set()
     _turn_reasoning.clear()
+    _reset_turn_approvals()
     _last_turn_usage.update({"input": 0, "output": 0, "cached": 0, "calls": 0, "estimated": False})
 
     try:

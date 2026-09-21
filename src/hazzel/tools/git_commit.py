@@ -1,5 +1,14 @@
 from .. import git
 from .. import ui
+from .approvals import check as _approval_check
+from .approvals import remember as _approval_remember
+from .approvals import repeat_denial as _repeat_denial
+from .approvals import sha_key
+
+
+def _approval_key(message, files):
+    scope = ", ".join(files) if files else "all changes"
+    return sha_key("git_commit", message or "", scope)
 
 
 def git_commit(message=None, files=None):
@@ -36,17 +45,31 @@ def git_commit(message=None, files=None):
             if len(message) > 500:
                 return "Tool error: commit message too long (>500 chars)."
             scope = ", ".join(files) if files else "all changes"
-            if not ui.confirm(f"Commit {scope} with message: {message!r}?"):
-                return "Commit cancelled by user"
+            key = _approval_key(message, files)
+            prior = _approval_check(key)
+            if prior is False:
+                return _repeat_denial("Commit cancelled by user")
+            if prior is None:
+                approved = ui.confirm(f"Commit {scope} with message: {message!r}?")
+                _approval_remember(key, approved)
+                if not approved:
+                    return "Commit cancelled by user"
         else:
             message = suggestion
         ok, out = git.commit(message, files)
         return out
     if len(message.strip()) > 500:
         return "Tool error: commit message too long (>500 chars)."
-    ui.show_diff(preview)
     scope = ", ".join(files) if files else "all changes"
-    if not ui.confirm(f"Commit {scope} with message: {message!r}?"):
-        return "Commit cancelled by user"
+    key = _approval_key(message, files)
+    prior = _approval_check(key)
+    if prior is False:
+        return _repeat_denial("Commit cancelled by user")
+    if prior is None:
+        ui.show_diff(preview)
+        approved = ui.confirm(f"Commit {scope} with message: {message!r}?")
+        _approval_remember(key, approved)
+        if not approved:
+            return "Commit cancelled by user"
     ok, out = git.commit(message, files)
     return out

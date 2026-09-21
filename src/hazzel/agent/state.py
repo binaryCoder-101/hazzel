@@ -2,6 +2,7 @@ import time
 
 from hazzel.providers.base import Usage, UsageRecord
 from hazzel.tokens import estimate_messages, estimate_text
+from hazzel.tools.approvals import reset_approvals
 
 from .toolspec import TOOLS
 
@@ -109,6 +110,7 @@ _LAST_TARGET = None
 
 def reset_conversation_state():
     reset_usage()
+    reset_approvals()
     global _LAST_TARGET
     _LAST_TARGET = None
     _turn_reasoning.clear()
