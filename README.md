@@ -13,7 +13,7 @@
   <a href="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml"><img src="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml/badge.svg" alt="CI"></a>&nbsp;
   <a href="https://pypi.org/project/hazzel/"><img src="https://img.shields.io/pypi/v/hazzel" alt="PyPI"></a>&nbsp;
   <a href="https://pypistats.org/packages/hazzel"><img src="https://img.shields.io/badge/downloads-4k%2Fmonth-blue" alt="Downloads"></a>&nbsp;
-  <a href="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml"><img src="https://img.shields.io/badge/tests-314%20passing-brightgreen" alt="Tests"></a>&nbsp;
+  <a href="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml"><img src="https://img.shields.io/badge/tests-319%20passing-brightgreen" alt="Tests"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-green" alt="License"></a>&nbsp;
   <a href="https://github.com/mukundzha/hazzel/stargazers"><img src="https://img.shields.io/github/stars/mukundzha/hazzel?style=social" alt="Stars"></a>
 </p>
@@ -24,7 +24,7 @@
 
 > First external PR merged in v1.5.1 — [good first issues are open](https://github.com/mukundzha/hazzel/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
-**Recently shipped:** `NO_COLOR` support — piped logs and dumb terminals stay plain (#12, @DYNOSuprovo) · v1.5.3 SEO landing page · confirmation prompts accept `yes` — first external contribution (@Gambit-Checkmate, 1.5.1) · `/review` (1.5.0) · background `!cmd &` jobs (1.4.9) — [full changelog](CHANGELOG.md)
+**Recently shipped:** ask-once approvals — one y/N ends it, never asked twice (1.5.4) · `NO_COLOR` support — piped logs stay plain (#12, @DYNOSuprovo) · v1.5.3 SEO landing page · confirmation prompts accept `yes` — first external contribution (@Gambit-Checkmate, 1.5.1) · `/review` (1.5.0) — [full changelog](CHANGELOG.md)
 
 ## Try it in your project
 
@@ -61,7 +61,7 @@ No project quiz, no config ceremony — the read-only commands answer instantly,
 
 Most agents ask you to trust a black box. Hazzel asks you to trust three specific, inspectable mechanisms instead:
 
-* **Every write is a diff you approve, first.** Shell commands too — except a small allowlist of true read-onlys (`ls`, `cat`, `git status`) that skip the queue.
+* **Every write is a diff you approve, first.** Shell commands too — except a small allowlist of true read-onlys (`ls`, `cat`, `git status`) that skip the queue. And one decision sticks: approve or deny once per turn, never re-prompted for the same call.
 * **Every write is checkpointed, automatically.** Prior bytes snapshotted to `~/.config/hazzel/undo/` (200 events, 20 per file) before anything lands. `/undo` restores them.
 * **Commands are sandboxed to your project root.** `git reset --hard` and `clean` are blocked outright; raw `git commit` is steered into `/commit` with its own diff preview.
 
@@ -76,7 +76,7 @@ flowchart LR
     dispatch --> gate["safety.py — approve · sandbox · checkpoint"]
     gate --> tools["tools/ — 15 actions"]
     loop --> llm["providers/ — 8 backends, your key"]
-    loop --> term["ui.py + formatter.py — your terminal"]
+    loop --> term["ui/ package + formatter.py — your terminal"]
 ```
 
 ## How it compares
@@ -138,7 +138,7 @@ Type `/` to filter live, `@` to attach a file, `/docs` to page the full guide wi
 
 ## What it's honest about not being
 
-v1.5.3 + `NO_COLOR` (unreleased), early-stage. No autonomous PRs, no cloud dashboard, no session sync across machines. It doesn't replace your editor — it sits in the terminal next to it, and it stays small on purpose.
+v1.5.4 + `NO_COLOR` (unreleased), early-stage. No autonomous PRs, no cloud dashboard, no session sync across machines. It doesn't replace your editor — it sits in the terminal next to it, and it stays small on purpose.
 
 If you need a heavier, more automated agent, better options exist. If you want to see exactly what's about to happen to your files before it happens, this is built for that.
 
