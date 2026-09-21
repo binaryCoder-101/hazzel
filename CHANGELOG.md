@@ -5,6 +5,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- README quickstart leads with a zero-install trial (`uvx hazzel` / `pipx run hazzel` — verified: 5s cold, instant warm) with persistent alternatives (`uv tool install`, `pipx install`) alongside `pip`.
 - CI coverage report (`pytest-cov`, report-only, no fail-under gate) on the Python 3.13 leg, with the HTML report uploaded as a 14-day artifact. `pytest-cov` added to the `dev` extra.
 - README test-count badge (linked to CI) so the suite size is visible without clicking through.
 - `vercel.json` pinning deployments to `main`, so pull requests stop inheriting a failing "Authorization required to deploy" check on `site/`.

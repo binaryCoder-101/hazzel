@@ -31,7 +31,8 @@
 Every agent claims transparency. Hazzel is ~10k lines of Python you can trace end to end — `agent/core.py` is the whole loop, `tools/` is every action it can take, `safety.py` is the entire undo system — and it stops before every write to show you what's about to happen.
 
 ```bash
-pip install hazzel
+uvx hazzel                  # try it — nothing installed, no venv touched (or: pipx run hazzel)
+pip install hazzel          # to keep it (or: uv tool install hazzel · pipx install hazzel)
 export GROQ_API_KEY="..."   # or skip this and pick a provider inside with /model
 cd your-project
 hazzel
