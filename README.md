@@ -10,24 +10,16 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml">
-    <img src="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml/badge.svg" alt="CI">
-  </a>
-  <a href="https://pypi.org/project/hazzel/">
-    <img src="https://img.shields.io/pypi/v/hazzel" alt="PyPI">
-  </a>
-  <a href="https://pypistats.org/packages/hazzel">
-    <img src="https://img.shields.io/badge/downloads-4k%2Fmonth-blue" alt="Downloads">
-  </a>
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-green" alt="License">
-  </a>
-  <a href="https://github.com/mukundzha/hazzel/stargazers">
-    <img src="https://img.shields.io/github/stars/mukundzha/hazzel?style=social" alt="Stars">
-  </a>
+  <a href="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml"><img src="https://github.com/mukundzha/hazzel/actions/workflows/ci.yml/badge.svg" alt="CI"></a>&nbsp;
+  <a href="https://pypi.org/project/hazzel/"><img src="https://img.shields.io/pypi/v/hazzel" alt="PyPI"></a>&nbsp;
+  <a href="https://pypistats.org/packages/hazzel"><img src="https://img.shields.io/badge/downloads-4k%2Fmonth-blue" alt="Downloads"></a>&nbsp;
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0--or--later-green" alt="License"></a>&nbsp;
+  <a href="https://github.com/mukundzha/hazzel/stargazers"><img src="https://img.shields.io/github/stars/mukundzha/hazzel?style=social" alt="Stars"></a>
 </p>
 
-![Hazzel demo](assets/demo.gif)
+<p align="center">
+  <img src="assets/demo.gif" alt="Hazzel demo — read a failing test, edit the file, run pytest" width="720" />
+</p>
 
 > Built with help from [@ronaldsterners](https://github.com/ronaldsterners) · [@Gambit-Checkmate](https://github.com/Gambit-Checkmate) (first external PR, v1.5.1) · [@DYNOSuprovo](https://github.com/DYNOSuprovo) (#12) — [good first issues welcome](https://github.com/mukundzha/hazzel/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
@@ -80,7 +72,7 @@ flowchart LR
     loop --> fast["agent/fastpath.py — zero-LLM answers for reads"]
     loop --> dispatch["agent/dispatch.py"]
     dispatch --> gate["safety.py — approve · sandbox · checkpoint"]
-    gate --> tools["tools/ — 13 actions"]
+    gate --> tools["tools/ — 15 actions"]
     loop --> llm["providers/ — 8 backends, your key"]
     loop --> term["ui.py + formatter.py — your terminal"]
 ```
@@ -111,25 +103,36 @@ Aider is excellent — this is about fit, not superiority.
 | Remembers between sessions | Per-project sessions persist with `/session restore`. `/plan on` explores read-only first; `/think on` buys extended reasoning for hard edits. |
 | Works in a pipeline | `hazzel -p "prompt"` runs one turn and exits — pipe a diff in, get a summary out. `--output-format json` + real exit codes for CI. |
 
-Copy-paste transcripts of `/review`, `/commit`, `@image`, background jobs, and `hazzel -p` are in [docs/EXAMPLES.md](docs/EXAMPLES.md).
+Worked transcripts of `/review`, `/commit`, `@image`, background jobs, and `hazzel -p` live in [docs/EXAMPLES.md](docs/EXAMPLES.md).
 
 ## Providers — bring your own key, no subscription
 
-Eight providers: OpenAI, Anthropic, Mistral, Gemini, DeepSeek, OpenRouter (100+ models, one key), Groq (default: `openai/gpt-oss-120b`) — set one env var (`OPENAI_API_KEY`, `GROQ_API_KEY`, …) and skip the prompt entirely.
+Eight providers, one env var each. Set the one you want and skip the in-app prompt:
 
-Ollama runs fully local and needs no key at all. Switch anytime with `/model`. Nothing is metered by Hazzel — you pay your provider directly, or nothing at all if you're running local.
+| Provider | Env var | Notes |
+| -------- | ------- | ----- |
+| Groq | `GROQ_API_KEY` | default model runs here |
+| OpenAI | `OPENAI_API_KEY` | |
+| Anthropic | `ANTHROPIC_API_KEY` | |
+| Mistral | `MISTRAL_API_KEY` | |
+| Gemini | `GEMINI_API_KEY` | |
+| DeepSeek | `DEEPSEEK_API_KEY` | |
+| OpenRouter | `OPENROUTER_API_KEY` | 100+ models behind one key |
+| Ollama | *(none)* | fully local, keyless, `OLLAMA_HOST` override |
+
+Switch anytime with `/model`. Nothing is metered by Hazzel — you pay your provider directly, or nothing at all if you're running local.
 
 ## Commands at a glance
 
-| Group      | Commands                                                                               |
-| ---------- | -------------------------------------------------------------------------------------- |
+| Group      | Commands                                                                              |
+| ---------- | ------------------------------------------------------------------------------------- |
 | Modes      | `/model` · `/plan on\|off` · `/think on\|off` · `/goal [@objective]`                   |
-| Git        | `/status` · `/diff [--staged]` · `/review [--staged]` · `/commit` · `/log`            |
+| Git        | `/status` · `/diff [--staged]` · `/review [--staged]` · `/commit` · `/log`             |
 | Cost       | `/usage [today\|week\|month\|--by-model]` · `/budget`                                  |
-| Extend     | `/mcp [server [tool]]` · `/skills [name]` · `/init`                                    |
+| Extend     | `/mcp [server [tool]]` · `/skills [name]` · `/init`                                   |
 | Transcript | `/export` · `/copy` · `/retry` · `/jobs` · `/undo [n]` · `/session restore` · `/clear` |
 
-Type `/` to filter live, `@` to attach a file, `/docs` for the full guide without leaving the terminal.
+Type `/` to filter live, `@` to attach a file, `/docs` to page the full guide without leaving the terminal — see [docs/EXAMPLES.md](docs/EXAMPLES.md) for worked transcripts.
 
 ## What it's honest about not being
 
@@ -139,62 +142,54 @@ If you need a heavier, more automated agent, better options exist. If you want t
 
 ## Support Hazzel
 
-<a href="https://star-history.com/#mukundzha/hazzel&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mukundzha/hazzel&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mukundzha/hazzel&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=mukundzha/hazzel&type=Date" />
- </picture>
-</a>
+If Hazzel is useful, the cheapest support costs nothing — use it, report what breaks, or send a PR. It's free and open-source, and it plans to stay both.
 
-Hazzel is free and open-source, and it plans to stay both. The cheapest support costs nothing: use it, report what breaks, or send a PR.
-
-If you'd rather throw money at the problem, that works too — it goes straight into maintainer time for docs, fixes, and reviews:
+If you'd rather throw money at the problem, that works too. It goes straight into maintainer time for docs, fixes, and reviews:
 
 <p align="center">
   <a href="https://paypal.me/mukundzi">
-    <img src="https://img.shields.io/badge/Donate-PayPal-0070BA?sHazzel: the open source terminal coding agenttyle=for-the-badge&logo=paypal&logoColor=white" alt="Donate via PayPal">
+    <img src="https://img.shields.io/badge/Donate-PayPal-0070BA?style=for-the-badge&logo=paypal&logoColor=white" alt="Donate via PayPal">
+  </a>
+</p>
+
+<p align="center">
+  <sub>Star history</sub><br/>
+  <a href="https://star-history.com/#mukundzha/hazzel&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mukundzha/hazzel&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mukundzha/hazzel&type=Date" />
+      <img alt="Star history for mukundzha/hazzel" src="https://api.star-history.com/svg?repos=mukundzha/hazzel&type=Date" width="560" />
+    </picture>
   </a>
 </p>
 
 ## Who's behind this
 
-<p align="left">
-  <table align="left">
-    <tr>
-    <td align="left">
-      <a href="https://github.com/mukundzha">
-        <img src="https://avatars.githubusercontent.com/mukundzha?v=4&s=80" width="80" alt="mukundzha"/><br/>
-        <sub><b>Mukund Jha</b><br/>creator</sub>
-      </a>
-    </td>
-    <td align="left">
-      <a href="https://github.com/ronaldsterners">
-        <img src="https://avatars.githubusercontent.com/ronaldsterners?v=4&s=80" width="80" alt="ronaldsterners"/><br/>
-        <sub><b>ronaldsterners</b></sub>
-      </a>
-    </td>
-    <td align="left">
-      <a href="https://github.com/Gambit-Checkmate">
-        <img src="https://avatars.githubusercontent.com/Gambit-Checkmate?v=4&s=80" width="80" alt="Gambit-Checkmate"/><br/>
-        <sub><b>Gambit-Checkmate</b></sub>
-      </a>
-    </td>
-    <td align="left">
-      <a href="https://github.com/DYNOSuprovo">
-        <img src="https://avatars.githubusercontent.com/DYNOSuprovo?v=4&s=80" width="80" alt="DYNOSuprovo"/><br/>
-        <sub><b>DYNOSuprovo</b></sub>
-      </a>
-    </td>
-  </tr>
-  </table>
+<p align="center">
+  <a href="https://github.com/mukundzha"><img src="https://avatars.githubusercontent.com/mukundzha?v=4&s=80" width="64" alt="mukundzha"/></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/ronaldsterners"><img src="https://avatars.githubusercontent.com/ronaldsterners?v=4&s=80" width="64" alt="ronaldsterners"/></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/Gambit-Checkmate"><img src="https://avatars.githubusercontent.com/Gambit-Checkmate?v=4&s=80" width="64" alt="Gambit-Checkmate"/></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/DYNOSuprovo"><img src="https://avatars.githubusercontent.com/DYNOSuprovo?v=4&s=80" width="64" alt="DYNOSuprovo"/></a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/HarshRajSinghania"><img src="https://avatars.githubusercontent.com/HarshRajSinghania?v=4&s=80" width="64" alt="HarshRajSinghania"/></a>
 </p>
 
-Every PR lands through the same door: reviewed, CI-verified on four Python versions, credited in the release notes. ronaldsterners, Gambit-Checkmate, and DYNOSuprovo all started with a good first issue — the next row is one PR away.
+<p align="center">
+  <a href="https://github.com/mukundzha"><b>Mukund Jha</b> <sub>creator</sub></a> ·
+  <a href="https://github.com/ronaldsterners"><b>ronaldsterners</b></a> ·
+  <a href="https://github.com/Gambit-Checkmate"><b>Gambit-Checkmate</b></a> ·
+  <a href="https://github.com/DYNOSuprovo"><b>DYNOSuprovo</b></a> ·
+  <a href="https://github.com/HarshRajSinghania"><b>HarshRajSinghania</b></a>
+</p>
+
+Every PR lands through the same door: reviewed, CI-verified on four Python versions, credited in the release notes. ronaldsterners, Gambit-Checkmate, DYNOSuprovo, and HarshRajSinghania all started with a good first issue — the next row is one PR away.
 
 ## Contributing
 
-Issues and PRs genuinely welcome — `ROADMAP.md` tracks what's next, `CONTRIBUTING.md` has the ground rules (small, inspectable, no new deps without asking), and good first issues are labeled as such.
+Issues and PRs genuinely welcome — [ROADMAP.md](ROADMAP.md) tracks what's next, [CONTRIBUTING.md](CONTRIBUTING.md) has the ground rules (small, inspectable, no new deps without asking), and good first issues are labeled as such.
 
 ## License
 
@@ -202,11 +197,8 @@ AGPL-3.0-or-later. See [LICENSE](LICENSE).
 
 Why AGPL? It keeps hosted clones open — if you run Hazzel as a service, share your changes back. Normal use (install it, use it at work, ship code it helped you write) is unaffected — only re-hosting Hazzel itself triggers share-alike. If the license blocks adoption at your company, [open an issue](https://github.com/mukundzha/hazzel/issues/new?template=feature_request.md) — dual-licensing is on the table with enough demand.
 
----
-
 <p align="center">
-  Small tools stay small because people who find them useful say so.<br/>
+  <sub>Small tools stay small because people who find them useful say so.<br/>
   If Hazzel is now sitting in your terminal next to your editor,
-  <a href="https://github.com/mukundzha/hazzel">a star</a>
-  is how the next person finds it too.
+  <a href="https://github.com/mukundzha/hazzel">a star</a> is how the next person finds it too.</sub>
 </p>
