@@ -5,9 +5,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Tests
-- Add coverage for mutable UI state proxying between `hazzel.ui` and `hazzel.ui._state`.
-
 ## [1.5.4] - 2026-09-21
 ### Added
 - Ask-once approvals (`tools/approvals.py`): a y/N decision sticks for the turn — approvals run without re-prompting, denials fail fast with guidance instead of prompting again. Wired into `run_command`, `write_file`, `edit_file`, `apply_edits`, and `git_commit`; memory resets every turn and on conversation clear.
